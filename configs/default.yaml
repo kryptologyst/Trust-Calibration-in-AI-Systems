@@ -1,0 +1,55 @@
+# Default configuration for Trust Calibration in AI Systems
+
+# Dataset configuration
+dataset:
+  name: "iris"  # Options: iris, wine, breast_cancer, synthetic
+  test_size: 0.2
+  random_state: 42
+  scale_features: true
+
+# Model configuration
+models:
+  random_forest:
+    n_estimators: 100
+    random_state: 42
+  
+  calibration:
+    methods: ["platt", "isotonic"]
+    cv_folds: 5
+
+# Evaluation configuration
+evaluation:
+  n_bins: 10
+  metrics:
+    - "accuracy"
+    - "brier_score"
+    - "log_loss"
+    - "ece"
+    - "mce"
+    - "roc_auc"
+
+# Visualization configuration
+visualization:
+  style: "seaborn-v0_8"
+  figsize: [10, 8]
+  dpi: 300
+  save_plots: true
+
+# Output configuration
+output:
+  results_dir: "assets/results"
+  plots_dir: "assets/plots"
+  models_dir: "assets/models"
+  logs_dir: "assets/logs"
+
+# Logging configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "assets/logs/calibration.log"
+
+# Device configuration
+device:
+  prefer_cuda: true
+  prefer_mps: true  # Apple Silicon
+  fallback_cpu: true
